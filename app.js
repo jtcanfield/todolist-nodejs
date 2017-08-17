@@ -3,7 +3,8 @@ const path = require('path');
 const mustache = require('mustache-express');
 const bodyParser = require('body-parser');
 const app = express();
-const jsonfile = require('jsonfile')
+const jsonfile = require('jsonfile');
+const file = '/data.json'
 const todosArray = ["Wash the car"];
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
