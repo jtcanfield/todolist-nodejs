@@ -24,9 +24,9 @@ app.get("/", function (req, res) {
       } else {
       obj = JSON.parse(data);
       var arrayfile = obj.todoArray;
-      console.log(obj.todoArray);
+      var done = obj.doneArray
       // this makes todosMustache the arrayfile that was just downloaded
-      res.render('index', { todosMustache: arrayfile });
+      res.render('index', { todosMustache: arrayfile,  doneMustache: done});
   }});
   // This will make todosMustache the todosArray
   // res.render('index', { todosMustache: todosArray });
@@ -49,6 +49,21 @@ app.post("/", function (req, res) {
 });
 
 
+app.post("/1", function (req, res) {
+  console.log("Well, that button worked");
+  fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
+      if (err){
+          console.log(err);
+      } else {
+      obj = JSON.parse(data); //now it an object
+      console.log(obj.todoArray);
+      // json = JSON.stringify(obj); //convert it back to json
+      // fs.writeFile('data.json', json, 'utf8'); // write it back
+  }});
+  res.redirect('/');
+});
+
+
 app.listen(3000, function () {
-  console.log('Hosted on local:3000')
+  console.log('Hosted on local:3000');
 })
