@@ -12,6 +12,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.post('/', function(req, res){
+  var email = req.body.email;
+  var html = '<p>Your user name is: </p>' + email;
+  res.send(html);
+});
+
 app.use('/', function(req, res){
   res.render("index");
 });
