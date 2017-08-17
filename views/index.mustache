@@ -19,7 +19,8 @@
       <button type="submit">Submit</button>
     </form>
     {{#todosMustache}}
-    <label onclick="crossout(this)"><input type="checkbox">{{.}}</label><br>
+    <input type="checkbox" id="{{.}}">
+    <label class="strikethrough" for="{{.}}">{{.}}</label><br>
     {{/todosMustache}}
  	  <script type="text/javascript" src="main.js"></script>
  	</body>
