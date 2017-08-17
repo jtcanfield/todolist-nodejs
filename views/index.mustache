@@ -18,7 +18,9 @@
       <input type="text" name="inputtodo"/>
       <button type="submit">Submit</button>
     </form>
-    <p>{{todosMustache}}</p>
+    {{#todosMustache}}
+    <p>{{.}}</p>
+    {{/todosMustache}}
  	  <script type="text/javascript" src="main.js"></script>
  	</body>
  </html>
