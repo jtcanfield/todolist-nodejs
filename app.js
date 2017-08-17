@@ -14,15 +14,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 
+app.use('/', function(req, res){
+  res.render("index");
+});
+
 app.post('/', function(req, res){
   console.log(req.body);
   var text = req.body.text;
   var html = '<p>Your user name is: </p>' + text;
   res.render(html);
-});
-
-app.use('/', function(req, res){
-  res.render("index");
 });
 
 app.listen(3000, function () {
