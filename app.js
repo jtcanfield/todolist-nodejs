@@ -58,20 +58,20 @@ app.post("/:dynamic", function (req, res) {
       } else {
       obj = JSON.parse(data); //now it an object
       // console.log(obj.todoArray);
-            // iterate over each element in the array
-            for (var i = 0; i < obj.todoArray.length; i++){
-            // look for the entry with a matching `code` value
-              if (obj.todoArray[i] === req.params.dynamic){
-                var change = obj.todoArray[i];
-                obj.todoArray.splice(i, 1);
-                console.log("I am deleting " + change);
-                obj.doneArray.push(change);
-                 // we found it
-                // obj[i].name is the matched result
-              }
-            }
-            json = JSON.stringify(obj); //convert it back to json
-            fs.writeFile('data.json', json, 'utf8'); // write it back
+        // iterate over each element in the array
+        for (var i = 0; i < obj.todoArray.length; i++){
+        // look for the entry with a matching `code` value
+          if (obj.todoArray[i] === req.params.dynamic){
+            var change = obj.todoArray[i];
+            obj.todoArray.splice(i, 1);
+            console.log("I am deleting " + change);
+            obj.doneArray.push(change);
+             // we found it
+            // obj[i].name is the matched result
+          }
+        }
+      json = JSON.stringify(obj); //convert it back to json
+      fs.writeFile('data.json', json, 'utf8'); // write it back
   }});
   res.redirect('/');
 });
