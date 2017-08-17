@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/', function(req, res){
+  console.log(req.body);
   var text = req.body.text;
   var html = '<p>Your user name is: </p>' + text;
   res.renders(html);
