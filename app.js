@@ -15,26 +15,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 
-app.use('/', function(req, res){
-  res.render("index");
-});
-
 app.get("/", function (req, res) {
   res.render('index', { todos: todos });
 });
 
 app.post("/", function (req, res) {
-  console.log(req.body.todo);
+  console.log(req.body);
   todos.push(req.body.todo);
+  console.log(todos);
   res.redirect('/');
 })
-
-// app.post('/', function(req, res){
-//   console.log(req.body);
-//   var text = req.body.text;
-//   var html = '<p>Your user name is: </p>' + text;
-//   res.render(html);
-// });
 
 app.listen(3000, function () {
   console.log('Hosted on local:3000')
