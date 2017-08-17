@@ -8,6 +8,10 @@ app.set('views', './views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set app to use bodyParser()` middleware.
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use('/', function(req, res){
   res.render("index");
 });
