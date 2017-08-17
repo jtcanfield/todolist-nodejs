@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jtcanfield/todolist-nodejs#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "mustache-express": "^1.2.5"
   }
 }
