@@ -20,12 +20,13 @@
     </form>
     <h2>To Do:</h2>
     {{#todosMustache}}
-    <input type="checkbox" id="{{.}}">
-    <label class="strikethrough" for="{{.}}">{{.}}</label><br>
-    {{/todosMustache}}
-    <form action="/1" method="post">
-      <button type="submit">Delete Checked</button>
+    <form id={{.}} action="/{{.}}" method="post">
+      <button type="submit">Delete</button><span>{{.}}</span>
     </form>
+    {{/todosMustache}}
+    <!-- <form action="/1" method="post">
+      <button type="submit">Delete Checked</button>
+    </form> -->
     <h2>Checked:</h2>
     {{#doneMustache}}
     <p>{{.}}</p>
