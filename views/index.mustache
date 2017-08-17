@@ -20,16 +20,13 @@
     </form>
     <h2>To Do:</h2>
     {{#todosMustache}}
-    <form id={{.}} action="/{{.}}" method="post">
-      <button type="submit">Delete</button><span>{{.}}</span>
-    </form>
+      <form id={{.}} action="/{{.}}" method="post">
+        <button type="submit">Delete</button><span>{{.}}</span>
+      </form>
     {{/todosMustache}}
-    <!-- <form action="/1" method="post">
-      <button type="submit">Delete Checked</button>
-    </form> -->
-    <h2>Checked:</h2>
+    <h2>Done:</h2>
     {{#doneMustache}}
-    <p>{{.}}</p>
+      <p>{{.}}</p>
     {{/doneMustache}}
  	  <script type="text/javascript" src="main.js"></script>
  	</body>
