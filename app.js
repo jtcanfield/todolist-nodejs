@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const file = './data.json';
 const fs = require('fs');
-// const main = require("./public/main.js");
 // const todosArray = ["Wash the car"];
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
@@ -19,15 +18,16 @@ app.use(bodyParser.text());
 
 //This is the initial rendering, saying to use index.mustache, and declares todosMustache
 app.get("/", function (req, res) {
+  //fs.readFile reads the data.json file
   fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
       if (err){
           console.log(err);
       } else {
-      obj = JSON.parse(data);
-      var arrayfile = obj.todoArray;
-      var done = obj.doneArray
-      // this makes todosMustache the arrayfile that was just downloaded
-      res.render('index', { todosMustache: arrayfile,  doneMustache: done});
+      obj = JSON.parse(data);//Turns data.json into an object named obj
+      var todoarray = obj.todoArray; //declares makes the todoarray
+      var donearray = obj.doneArray; //declares makes the donearray
+      // this makes todosMustache the todoarray var
+      res.render('index', { todosMustache: todoarray,  doneMustache: donearray});
   }});
   // This will make todosMustache the todosArray
   // res.render('index', { todosMustache: todosArray });
@@ -35,29 +35,26 @@ app.get("/", function (req, res) {
 
 //This means that every time method="post" is called on action="/", it will add to the array and redirect the user
 app.post("/", function (req, res) {
-  var addtolist = req.body.inputtodo
-  // todosArray.push(addtolist);
+  var addtolist = req.body.inputtodo; //Gets the text in the input tag with name ="inputtodo"
   fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
       if (err){
           console.log(err);
       } else {
-      obj = JSON.parse(data); //now it an object
-      obj.todoArray.push(addtolist); //add some data
-      json = JSON.stringify(obj); //convert it back to json
-      fs.writeFile('data.json', json, 'utf8'); // write it back
+      obj = JSON.parse(data); //now its an object
+      obj.todoArray.push(addtolist); //pushes the text to an array
+      json = JSON.stringify(obj); //converts back to json
+      fs.writeFile('data.json', json, 'utf8'); // writes to file
   }});
-  res.redirect('/');
+  res.redirect('/');//reloads page
 });
 
-
+//This is dynamic, meaning any time i click a button that is not "/", this will fire
 app.post("/:dynamic", function (req, res) {
-  console.log("Well, that button worked");
   fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
       if (err){
           console.log(err);
       } else {
-      obj = JSON.parse(data); //now it an object
-      // console.log(obj.todoArray);
+      obj = JSON.parse(data); //now its an object
         // iterate over each element in the array
         for (var i = 0; i < obj.todoArray.length; i++){
         // look for the entry with a matching `code` value
@@ -66,8 +63,6 @@ app.post("/:dynamic", function (req, res) {
             obj.todoArray.splice(i, 1);
             console.log("I am deleting " + change);
             obj.doneArray.push(change);
-             // we found it
-            // obj[i].name is the matched result
           }
         }
       json = JSON.stringify(obj); //convert it back to json
