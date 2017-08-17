@@ -3,6 +3,7 @@ const path = require('path');
 const mustache = require('mustache-express');
 const bodyParser = require('body-parser');
 const app = express();
+const todos = ["Wash the car"];
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 app.set('views', './views');
@@ -18,12 +19,22 @@ app.use('/', function(req, res){
   res.render("index");
 });
 
-app.post('/', function(req, res){
-  console.log(req.body);
-  var text = req.body.text;
-  var html = '<p>Your user name is: </p>' + text;
-  res.render(html);
+app.get("/", function (req, res) {
+  res.render('index', { todos: todos });
 });
+
+app.post("/", function (req, res) {
+  console.log(req.body.todo);
+  todos.push(req.body.todo);
+  res.redirect('/');
+})
+
+// app.post('/', function(req, res){
+//   console.log(req.body);
+//   var text = req.body.text;
+//   var html = '<p>Your user name is: </p>' + text;
+//   res.render(html);
+// });
 
 app.listen(3000, function () {
   console.log('Hosted on local:3000')
