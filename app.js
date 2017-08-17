@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mustache = require('mustache-express');
+const bodyParser = require('body-parser');
 const app = express();
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
@@ -13,9 +14,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/', function(req, res){
-  var email = req.body.email;
-  var html = '<p>Your user name is: </p>' + email;
-  res.send(html);
+  var text = req.body.text;
+  var html = '<p>Your user name is: </p>' + text;
+  res.renders(html);
 });
 
 app.use('/', function(req, res){
