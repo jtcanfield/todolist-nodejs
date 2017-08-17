@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set app to use bodyParser()` middleware.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.text());
 
 app.post('/', function(req, res){
   console.log(req.body);
