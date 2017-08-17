@@ -57,18 +57,18 @@ app.post("/:dynamic", function (req, res) {
       obj = JSON.parse(data); //now its an object
         // iterate over each element in the array
         for (var i = 0; i < obj.todoArray.length; i++){
-        // look for the entry with a matching `code` value
-          if (obj.todoArray[i] === req.params.dynamic){
-            var change = obj.todoArray[i];
-            obj.todoArray.splice(i, 1);
-            console.log("I am deleting " + change);
-            obj.doneArray.push(change);
+        // look for the entry with a matching value
+          if (obj.todoArray[i] === req.params.dynamic){//req.params.dynamic finds the value of dynamic
+            var change = obj.todoArray[i]; //this sets change to the string to delete
+            console.log("I am deleting " + change);//logs the string to delete
+            obj.doneArray.push(change);//pushes the string to delete to the done array
+            obj.todoArray.splice(i, 1);//splices the string from the to do array
           }
         }
-      json = JSON.stringify(obj); //convert it back to json
-      fs.writeFile('data.json', json, 'utf8'); // write it back
+      json = JSON.stringify(obj); //converts back to json
+      fs.writeFile('data.json', json, 'utf8'); // writes to file
   }});
-  res.redirect('/');
+  res.redirect('/');//reloads page
 });
 
 
