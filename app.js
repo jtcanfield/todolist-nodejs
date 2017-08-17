@@ -20,6 +20,7 @@ app.get("/", function (req, res) {
   res.render('index', { todosMustache: todosArray });
 });
 
+//This means that every time method="post" is called on action="/", it will add to the array and redirect the user
 app.post("/", function (req, res) {
   console.log(req.body);
   todosArray.push(req.body.inputtodo);
