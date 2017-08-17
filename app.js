@@ -3,7 +3,7 @@ const path = require('path');
 const mustache = require('mustache-express');
 const bodyParser = require('body-parser');
 const app = express();
-const todos = ["Wash the car"];
+const todosarray = ["Wash the car"];
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 app.set('views', './views');
@@ -16,12 +16,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 
 app.get("/", function (req, res) {
-  res.render('index', { todos: todos });
+  res.render('index', { todosmustache: todosarray });
 });
 
 app.post("/", function (req, res) {
   console.log(req.body);
-  todos.push(req.body.todo);
+  todos.push(req.body.inputtodo);
   console.log(todos);
   res.redirect('/');
 })
