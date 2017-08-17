@@ -21,7 +21,7 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
   console.log(req.body);
-  todos.push(req.body.inputtodo);
+  todosarray.push(req.body.inputtodo);
   console.log(todos);
   res.redirect('/');
 })
