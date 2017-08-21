@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const file = './data.json';
 const fs = require('fs');
+
 const UserFile = require("./users.js");//This requires another file
-// const todosArray = ["Wash the car"];
+UserFile.find("blaaa");//this uses that other file's ".find"
+
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 app.set('views', './views');
@@ -16,8 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
-
-UserFile.find("blaaa");
 
 //This is the initial rendering, saying to use index.mustache, and declares todosMustache
 app.get("/", function (req, res) {
@@ -50,19 +50,6 @@ app.post("/", function (req, res) {
   }});
   res.redirect('/');//reloads page
 });
-
-
-
-app.get("/admin", function (req, res) {
-  
-  res.render("admin");
-});
-
-
-app.get("/admin/user-list", function (req, res) {
-  res.render("userlist");
-});
-
 
 //This is dynamic, meaning any time i click a button that is not "/", this will fire
 app.post("/:dynamic", function (req, res) {
