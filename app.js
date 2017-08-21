@@ -51,6 +51,19 @@ app.post("/", function (req, res) {
   res.redirect('/');//reloads page
 });
 
+
+
+app.get("/admin", function (req, res) {
+  
+  res.render("admin");
+});
+
+
+app.get("/admin/user-list", function (req, res) {
+  res.render("userlist");
+});
+
+
 //This is dynamic, meaning any time i click a button that is not "/", this will fire
 app.post("/:dynamic", function (req, res) {
   fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
