@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const file = './data.json';
 const fs = require('fs');
+const UserFile = require("./users.js");//This requires another file
 // const todosArray = ["Wash the car"];
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
@@ -15,6 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
+
+UserFile.find("blaaa");
 
 //This is the initial rendering, saying to use index.mustache, and declares todosMustache
 app.get("/", function (req, res) {
