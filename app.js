@@ -52,7 +52,7 @@ app.post("/", function (req, res) {
 });
 
 //This is dynamic, meaning any time i click a button that is not "/", this will fire
-app.post("/:dynamic", function (req, res) {
+app.post("/complete:dynamic", function (req, res) {
   fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
       if (err){
           console.log(err);
